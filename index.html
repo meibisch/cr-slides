@@ -537,6 +537,163 @@
     .flow { flex-direction: column; }
     .flow-arrow { transform: rotate(90deg); }
   }
+
+  /* ─────────────────────────────────────────────
+     MOBILE – Portrait phones (max-width: 768px)
+     Desktop layout is untouched above this point.
+     ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+
+    /* –– Slide padding –– */
+    .slide {
+      padding: 64px 20px 60px;
+    }
+    .slide.cover, .slide.outro {
+      padding: 40px 20px;
+    }
+
+    /* –– Typography –– */
+    h1.broadway {
+      font-size: clamp(28px, 8vw, 44px);
+      letter-spacing: 0.16em;
+    }
+    h2.chapter {
+      font-size: clamp(22px, 6.5vw, 36px);
+      letter-spacing: 0.10em;
+    }
+    h2.mincho {
+      font-size: clamp(14px, 4vw, 20px);
+    }
+    h3 {
+      font-size: clamp(16px, 5vw, 24px);
+    }
+    .lead {
+      font-size: clamp(13px, 3.8vw, 17px);
+    }
+    p, li {
+      font-size: clamp(12px, 3.5vw, 15px);
+    }
+    .eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+    }
+    .chapter-slide .use-case-num {
+      font-size: clamp(11px, 3vw, 14px);
+    }
+
+    /* –– Stats: 1 column on very small screens, 3 on wider phones –– */
+    .stats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .stat-value {
+      font-size: clamp(20px, 6vw, 32px);
+    }
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 0.10em;
+    }
+
+    /* –– Platform list: 2 columns –– */
+    .platform-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .platform-name { font-size: 11px; }
+    .platform-type { font-size: 9px; }
+
+    /* –– Stack grid: 1 column –– */
+    .stack-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .stack-item { padding: 14px 16px; }
+    .stack-item-value { font-size: 13px; }
+
+    /* –– Compare: 1 column –– */
+    .compare {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .compare-col { padding: 18px 18px; }
+    .compare-list li { font-size: 12px; padding: 6px 0; }
+
+    /* –– Screenshot: smaller max-height –– */
+    .screenshot-wrap {
+      margin-top: 14px;
+      max-height: 38vh;
+    }
+    .screenshot-caption { font-size: 9px; }
+
+    /* –– Reasons: 1 column –– */
+    .reasons {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .reason { padding: 16px 16px; }
+    .reason-headline { font-size: 16px; }
+    .reason-body { font-size: 12px; }
+
+    /* –– Flow: vertical –– */
+    .flow {
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .flow-arrow {
+      transform: rotate(90deg);
+      font-size: 16px;
+      padding: 0;
+      text-align: center;
+    }
+    .flow-node { padding: 14px 16px; }
+    .flow-node-value { font-size: 13px; }
+    .flow-node-meta { font-size: 11px; }
+
+    /* –– URL pill –– */
+    .url-pill {
+      font-size: 12px;
+      padding: 8px 14px;
+      margin-top: 16px;
+    }
+
+    /* –– Steps –– */
+    .step {
+      gap: 16px;
+      padding: 16px 0;
+    }
+    .step-num { font-size: 22px; min-width: 32px; }
+    .step-content h4 { font-size: 14px; }
+    .step-content p { font-size: 12px; }
+
+    /* –– Outro links –– */
+    .outro-links a { font-size: 12px; }
+    .outro-thanks { font-size: 11px; margin-top: 24px; }
+
+    /* –– Navigation UI –– */
+    .counter { font-size: 10px; bottom: 16px; right: 20px; }
+    .hint { font-size: 8px; bottom: 16px; left: 20px; }
+    .brand-mark { font-size: 9px; top: 16px; left: 20px; }
+
+    /* –– Rule –– */
+    .rule { margin: 12px 0 16px; }
+  }
+
+  /* Extra small phones (max-width: 400px) */
+  @media (max-width: 400px) {
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .platform-list {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
