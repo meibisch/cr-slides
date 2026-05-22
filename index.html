@@ -79,6 +79,53 @@
     width: auto;
   }
 
+  /* –– Navigation Buttons –– */
+  .nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 26, 26, 0.85);
+    border: 1px solid var(--ui-border-default);
+    color: var(--ui-text-secondary);
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s, opacity 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  #prevBtn { left: 16px; }
+  #nextBtn { right: 16px; }
+
+  .nav-btn:hover {
+    border-color: var(--cr-light-grey);
+    color: var(--cr-text-silver);
+  }
+  .nav-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+      top: auto;
+      bottom: 52px;
+      transform: none;
+      background: rgba(26, 26, 26, 0.92);
+    }
+    #prevBtn { left: 20px; }
+    #nextBtn { right: 20px; }
+  }
+
   /* ── Typography ── */
   .eyebrow {
     font-size: 11px;
@@ -682,6 +729,20 @@
 
     /* –– Rule –– */
     .rule { margin: 12px 0 16px; }
+
+    /* –– Cover & Outro: prevent horizontal overflow –– */
+    .cover > *, .outro > * {
+      max-width: 100%;
+      width: 100%;
+      text-align: center;
+    }
+    .cover h1.broadway,
+    .outro h1.broadway {
+      font-size: clamp(22px, 7vw, 38px);
+      letter-spacing: 0.12em;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
   }
 
   /* Extra small phones (max-width: 400px) */
@@ -1048,6 +1109,9 @@
       brandMark.classList.remove('hidden');
     }
     window.location.hash = pad;
+    // Arrows: hide when at first/last slide
+    document.getElementById('prevBtn').classList.toggle('hidden', idx === 0);
+    document.getElementById('nextBtn').classList.toggle('hidden', idx === slides.length - 1);
   }
 
   function toggleFullscreen() {
@@ -1066,9 +1130,20 @@
     else if (e.key === 'f' || e.key === 'F') { toggleFullscreen(); }
   });
 
-  // Click to advance (but not on links)
+  // Click to advance (desktop only; mobile uses nav buttons)
   document.addEventListener('click', (e) => {
     if (e.target.tagName === 'A') return;
+    if (e.target.classList.contains('nav-btn')) return;
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    go(idx + 1);
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    go(idx - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
     go(idx + 1);
   });
 
@@ -1080,5 +1155,7 @@
     go(0);
   }
 </script>
+<button class="nav-btn" id="prevBtn" aria-label="Previous slide">&#8592;</button>
+<button class="nav-btn" id="nextBtn" aria-label="Next slide">&#8594;</button>
 </body>
 </html>
